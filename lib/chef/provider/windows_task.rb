@@ -226,7 +226,7 @@ class Chef
 
       def start_day_updated?
         current_day = DateTime.strptime(current_resource.start_day, convert_system_date_format_to_ruby_date_format)
-        new_day = parse_day(new_resource.start_day)
+        new_day = DateTime.strptime(new_resource.start_day, convert_system_date_format_to_ruby_date_format)
         current_day != new_day
       end
 
@@ -236,7 +236,7 @@ class Chef
       end
 
       def convert_user_date_to_system_date(date_in_string)
-        parse_day(date_in_string).strftime(convert_system_date_format_to_ruby_long_date)
+        DateTime.strptime(date_in_string, convert_system_date_format_to_ruby_date_format).strftime(convert_system_date_format_to_ruby_long_date)
       end
 
       def convert_system_date_format_to_ruby_long_date
